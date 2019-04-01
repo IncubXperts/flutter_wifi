@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="607b4659-5a25-49dc-9cc5-eb2b790658a0" name="Default Changelist" comment="" />
+    <list default="true" id="607b4659-5a25-49dc-9cc5-eb2b790658a0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/FlutterWifiPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/FlutterWifiPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/WifiUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/WifiUtil.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
     <ignored path="$PROJECT_DIR$/.pub/" />
@@ -18,19 +22,21 @@
     <session id="1668940946">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.12" value="1" />
+          <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.26" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.open.time.34" value="1" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="dart" value="5" />
           <entry key="gradle" value="2" />
-          <entry key="java" value="14" />
+          <entry key="java" value="20" />
           <entry key="png" value="1" />
           <entry key="xml" value="3" />
           <entry key="yaml" value="1" />
@@ -41,7 +47,7 @@
           <entry key="Dart" value="5" />
           <entry key="Groovy" value="2" />
           <entry key="Image" value="1" />
-          <entry key="JAVA" value="14" />
+          <entry key="JAVA" value="20" />
           <entry key="XML" value="3" />
           <entry key="YAML" value="1" />
         </counts>
@@ -51,7 +57,7 @@
           <entry key="dart" value="11" />
           <entry key="dummy" value="6" />
           <entry key="gradle" value="55" />
-          <entry key="java" value="218" />
+          <entry key="java" value="541" />
           <entry key="xml" value="1" />
           <entry key="yaml" value="34" />
         </counts>
@@ -60,7 +66,7 @@
         <counts>
           <entry key="Dart" value="11" />
           <entry key="Groovy" value="55" />
-          <entry key="JAVA" value="218" />
+          <entry key="JAVA" value="541" />
           <entry key="PLAIN_TEXT" value="6" />
           <entry key="XML" value="1" />
           <entry key="YAML" value="34" />
@@ -76,8 +82,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/FlutterWifiPlugin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="53" column="14" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
+            <state relative-caret-position="316">
+              <caret line="36" column="52" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -88,13 +94,22 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/WifiUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24">
-              <caret line="228" selection-start-line="228" selection-end-line="228" />
+            <state relative-caret-position="284">
+              <caret line="228" column="18" selection-start-line="228" selection-start-column="18" selection-end-line="228" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#9598#10816#0" />
-                <element signature="e#10822#11274#0" />
+                <element signature="e#8652#9646#0" />
+                <element signature="e#9652#10870#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/net/wifi/WifiManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="169">
+              <caret line="1378" column="7" selection-start-line="1378" selection-start-column="7" selection-end-line="1378" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -118,19 +133,25 @@
       <find>ap</find>
       <find>loadData</find>
       <find>connect</find>
+      <find>register</find>
+      <find>mDetailedState</find>
+      <find>NetworkChangeReceiver</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/lib/flutter_wifi.dart" />
-        <option value="$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/FlutterWifiPlugin.java" />
         <option value="$PROJECT_DIR$/test/flutter_wifi_test.dart" />
         <option value="$PROJECT_DIR$/example/lib/main.dart" />
         <option value="$PROJECT_DIR$/example/pubspec.yaml" />
         <option value="$PROJECT_DIR$/android/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/android/build.gradle" />
         <option value="$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/WifiDelegate.java" />
+        <option value="$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/FlutterWifiPlugin.java" />
         <option value="$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/WifiUtil.java" />
       </list>
     </option>
@@ -141,27 +162,13 @@
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="flutter_wifi" type="58d84e3e:PackageViewProjectNode" />
-              <item name="flutter_wifi_android" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="flutter_wifi" type="58d84e3e:PackageViewProjectNode" />
-              <item name="flutter_wifi_android" type="616d4139:PackageViewModuleNode" />
-              <item name="com.incubxperts.flutter_wifi.flutter_wifi" type="1f31426a:PackageElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="AndroidView" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -201,7 +208,22 @@
         </subPane>
         <option name="show-excluded-files" value="false" />
       </pane>
-      <pane id="AndroidView" />
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="flutter_wifi" type="58d84e3e:PackageViewProjectNode" />
+              <item name="flutter_wifi_android" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="flutter_wifi" type="58d84e3e:PackageViewProjectNode" />
+              <item name="flutter_wifi_android" type="616d4139:PackageViewModuleNode" />
+              <item name="com.incubxperts.flutter_wifi.flutter_wifi" type="1f31426a:PackageElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -264,13 +286,13 @@
       <window_info anchor="bottom" id="Flutter Performance" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.3295082" />
-      <window_info anchor="right" id="Codota" weight="0.32980332" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
       <window_info anchor="right" id="Flutter Inspector" order="3" />
       <window_info anchor="right" id="Flutter Outline" order="4" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="right" id="Codota" order="6" weight="0.32980332" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -281,21 +303,39 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/WifiUtil.java</url>
-          <line>362</line>
+          <line>364</line>
           <properties />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/WifiUtil.java</url>
-          <line>395</line>
+          <line>397</line>
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/WifiUtil.java</url>
-          <line>320</line>
+          <line>322</line>
           <properties />
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/WifiUtil.java</url>
+          <line>477</line>
+          <properties />
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/WifiUtil.java</url>
+          <line>476</line>
+          <properties />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/WifiUtil.java</url>
+          <line>478</line>
+          <properties />
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -360,19 +400,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="46" column="21" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/FlutterWifiPlugin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="53" column="14" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -390,14 +417,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/WifiUtil.java">
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/content/Context.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="228" selection-start-line="228" selection-end-line="228" />
+        <state relative-caret-position="203">
+          <caret line="2557" column="65" lean-forward="true" selection-start-line="2557" selection-start-column="65" selection-end-line="2557" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/net/ConnectivityManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4725">
+          <caret line="480" column="34" lean-forward="true" selection-start-line="480" selection-start-column="34" selection-end-line="480" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/FlutterWifiPlugin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="36" column="52" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#9598#10816#0" />
-            <element signature="e#10822#11274#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/net/NetworkInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="56" column="5" lean-forward="true" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/net/wifi/WifiManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="1378" column="7" selection-start-line="1378" selection-start-column="7" selection-end-line="1378" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/src/main/java/com/incubxperts/flutter_wifi/flutter_wifi/WifiUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="228" column="18" selection-start-line="228" selection-start-column="18" selection-end-line="228" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8652#9646#0" />
+            <element signature="e#9652#10870#0" />
           </folding>
         </state>
       </provider>

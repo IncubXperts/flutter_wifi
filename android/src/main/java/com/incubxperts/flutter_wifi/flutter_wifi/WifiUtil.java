@@ -7,8 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
+import android.net.Network;
 import android.net.NetworkInfo;
 import android.net.wifi.ScanResult;
+import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -453,15 +455,19 @@ public class WifiUtil implements PluginRegistry.RequestPermissionsResultListener
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            //NetworkInfo info = connectivityManager.getActiveNetworkInfo();
-            NetworkInfo info = intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO);
-            if (info.getState() == NetworkInfo.State.DISCONNECTED && willLink) {
-                wifiManager.enableNetwork(netId, true);
-                wifiManager.reconnect();
-                result.success(1);
-                willLink = false;
-                clearMethodCallAndResult();
+
+            ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(context.CONNECTIVITY_SERVICE);
+            NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+            int netType = info.getType();
+
+            if (netType == ConnectivityManager.TYPE_WIFI) {
+                if (info.getState() == NetworkInfo.State.DISCONNECTED && willLink) {
+                    wifiManager.enableNetwork(netId, true);
+                    wifiManager.reconnect();
+                    result.success(1);
+                    willLink = false;
+                    clearMethodCallAndResult();
+                }
             }
         }
 

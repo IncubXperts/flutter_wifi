@@ -30,11 +30,12 @@ public class FlutterWifiPlugin implements MethodCallHandler {
     final WifiUtil wifiUtil = new WifiUtil(registrar.activity(), wifiManager);
     registrar.addRequestPermissionsResultListener(wifiUtil);
 
-    // support Android O,listen network disconnect event
+    // support Android O, listen network disconnect event
     // https://stackoverflow.com/questions/50462987/android-o-wifimanager-enablenetwork-cannot-work
     IntentFilter filter = new IntentFilter();
     filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
     filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+
     registrar
             .context()
             .registerReceiver(wifiUtil.networkReceiver,filter);

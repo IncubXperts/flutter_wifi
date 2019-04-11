@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.net.wifi.ScanResult;
 import android.net.wifi.SupplicantState;
@@ -182,7 +183,7 @@ public class WifiUtil implements PluginRegistry.RequestPermissionsResultListener
     }
 
     private void launchWifiList() {
-        String key = methodCall.argument("key");
+        String filter = methodCall.argument("filter");
         List<HashMap> list = new ArrayList<>();
         if (wifiManager != null) {
             List<ScanResult> scanResultList = wifiManager.getScanResults();
@@ -198,12 +199,12 @@ public class WifiUtil implements PluginRegistry.RequestPermissionsResultListener
                     level = 0;
                 }
                 HashMap<String, Object> maps = new HashMap<>();
-                if (key.isEmpty()) {
+                if (filter.isEmpty()) {
                     maps.put("ssid", scanResult.SSID);
                     maps.put("level", level);
                     list.add(maps);
                 } else {
-                    if (scanResult.SSID.contains(key)) {
+                    if (scanResult.SSID.contains(filter)) {
                         maps.put("ssid", scanResult.SSID);
                         maps.put("level", level);
                         list.add(maps);
@@ -212,6 +213,61 @@ public class WifiUtil implements PluginRegistry.RequestPermissionsResultListener
             }
         }
         result.success(list);
+        clearMethodCallAndResult();
+    }
+
+    public void getWifiStatus(MethodCall methodCall, MethodChannel.Result result) {
+        if (!setPendingMethodCallAndResult(methodCall, result)) {
+            finishWithAlreadyActiveError();
+            return;
+        }
+        if (!permissionManager.isPermissionGranted(Manifest.permission.ACCESS_FINE_LOCATION)) {
+            permissionManager.askForPermission(Manifest.permission.ACCESS_FINE_LOCATION, REQUEST_ACCESS_FINE_LOCATION_PERMISSION);
+            return;
+        }
+        wifiStatus();
+    }
+
+    private void wifiStatus() {
+
+//        ConnectivityManager connectivityManager = (ConnectivityManager) activity.getSystemService(activity.CONNECTIVITY_SERVICE);
+//        NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+//
+//        if(info != null && info.isConnected()){
+//            if(info.getType())
+//        }
+
+//        ConnectivityManager connectivityManager = (ConnectivityManager) activity.getSystemService(activity.CONNECTIVITY_SERVICE);
+//        NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+//        int netType = info.getType();
+
+//        WifiManager wifiManager = (WifiManager)activity.getApplicationContext().getSystemService(activity.WIFI_SERVICE);
+
+        boolean isWifiEnabled = wifiManager.isWifiEnabled();
+
+        result.success(isWifiEnabled);
+        clearMethodCallAndResult();
+    }
+
+    public void changeWifiStatus(MethodCall methodCall, MethodChannel.Result result) {
+        if (!setPendingMethodCallAndResult(methodCall, result)) {
+            finishWithAlreadyActiveError();
+            return;
+        }
+        if (!permissionManager.isPermissionGranted(Manifest.permission.ACCESS_FINE_LOCATION)) {
+            permissionManager.askForPermission(Manifest.permission.ACCESS_FINE_LOCATION, REQUEST_ACCESS_FINE_LOCATION_PERMISSION);
+            return;
+        }
+        changeWifiStatus();
+    }
+
+    public void changeWifiStatus() {
+        boolean enable = methodCall.argument("enable");
+        boolean wifiResult = false;
+
+        wifiResult = wifiManager.setWifiEnabled(enable);
+
+        result.success(wifiResult);
         clearMethodCallAndResult();
     }
 
@@ -224,59 +280,7 @@ public class WifiUtil implements PluginRegistry.RequestPermissionsResultListener
             permissionManager.askForPermission(Manifest.permission.CHANGE_WIFI_STATE, REQUEST_ACCESS_FINE_LOCATION_PERMISSION);
             return;
         }
-        //connection();
-
         connectToAP();
-    }
-
-    private void connection() {
-        String ssid = methodCall.argument("ssid");
-        String password = methodCall.argument("password");
-        WifiConfiguration wifiConfig = createWifiConfig(ssid, password);
-        if (wifiConfig == null) {
-            finishWithError("unavailable", "wifi config is null!");
-            return;
-        }
-        int netId = wifiManager.addNetwork(wifiConfig);
-        if (netId == -1) {
-            result.success(0);
-            clearMethodCallAndResult();
-        } else {
-            // support Android O
-            // https://stackoverflow.com/questions/50462987/android-o-wifimanager-enablenetwork-cannot-work
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-                wifiManager.enableNetwork(netId, true);
-                wifiManager.reconnect();
-                result.success(1);
-                clearMethodCallAndResult();
-            } else {
-                networkReceiver.connect(netId);
-            }
-        }
-    }
-
-    private WifiConfiguration createWifiConfig(String ssid, String Password) {
-        WifiConfiguration config = new WifiConfiguration();
-        config.SSID = "\"" + ssid + "\"";
-        config.allowedAuthAlgorithms.clear();
-        config.allowedGroupCiphers.clear();
-        config.allowedKeyManagement.clear();
-        config.allowedPairwiseCiphers.clear();
-        config.allowedProtocols.clear();
-        WifiConfiguration tempConfig = isExist(wifiManager, ssid);
-        if (tempConfig != null) {
-            wifiManager.removeNetwork(tempConfig.networkId);
-        }
-        config.preSharedKey = "\"" + Password + "\"";
-        config.hiddenSSID = true;
-        config.allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.OPEN);
-        config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
-        config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);
-        config.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
-        config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);
-        config.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
-        config.status = WifiConfiguration.Status.ENABLED;
-        return config;
     }
 
     private WifiConfiguration isExist(WifiManager wifiManager, String ssid) {
@@ -301,23 +305,6 @@ public class WifiUtil implements PluginRegistry.RequestPermissionsResultListener
         }
         return "OPEN";
     }
-
-//    public void connectToAP() {
-//        try {
-//            String ssid = methodCall.argument("ssid");
-//            String networkPasskey = methodCall.argument("password");
-//            WifiConfiguration wifiConfig = new WifiConfiguration();
-//            wifiConfig.SSID = String.format("\"%s\"", ssid);
-//            wifiConfig.preSharedKey = String.format("\"%s\"", networkPasskey);
-//
-//            int netId = wifiManager.addNetwork(wifiConfig);
-//            boolean dis = wifiManager.disconnect();
-//            boolean en = wifiManager.enableNetwork(netId, true);
-//            boolean reconnect = wifiManager.reconnect();
-//        } catch (Exception e) {
-//            Log.d(TAG, e.toString());
-//        }
-//    }
 
     public void connectToAP() {
         try {
@@ -421,7 +408,7 @@ public class WifiUtil implements PluginRegistry.RequestPermissionsResultListener
                 break;
             case REQUEST_CHANGE_WIFI_STATE_PERMISSION:
                 if (permissionGranted) {
-                    connection();
+                    connectToAP();
                 }
                 break;
             default:

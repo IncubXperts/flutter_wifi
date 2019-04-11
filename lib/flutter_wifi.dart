@@ -5,8 +5,7 @@ import 'package:flutter/services.dart';
 enum WifiState { error, success, already }
 
 class FlutterWifi {
-  static const MethodChannel _channel =
-      const MethodChannel('flutter_wifi');
+  static const MethodChannel _channel = const MethodChannel('flutter_wifi');
 
   static Future<String> get ssid async {
     return await _channel.invokeMethod('ssid');
@@ -20,9 +19,9 @@ class FlutterWifi {
     return await _channel.invokeMethod('ip');
   }
 
-  static Future<List<WifiResult>> list(String key) async {
+  static Future<List<WifiResult>> list({String filter}) async {
     final Map<String, dynamic> params = {
-      'key': key,
+      'filter': filter,
     };
     var results = await _channel.invokeMethod('list', params);
     List<WifiResult> resultList = [];
@@ -48,6 +47,19 @@ class FlutterWifi {
       default:
         return WifiState.error;
     }
+  }
+
+  static Future<bool> isWifiEnabled() async {
+    bool isWifiEnabled = await _channel.invokeMethod('getWifiStatus');
+    return isWifiEnabled;
+  }
+
+  static Future<bool> turnWifiOnOff({bool enable = true}) async {
+    final Map<String, dynamic> params = {
+      'enable': enable,
+    };
+    bool result = await _channel.invokeMethod('changeWifiStatus', params);
+    return result;
   }
 }
 

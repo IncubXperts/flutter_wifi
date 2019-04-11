@@ -28,6 +28,8 @@ class _MyHomePageState extends State<MyHomePage> {
   String _wifiName = 'click button to get wifi ssid.';
   int level = 0;
   String _ip = 'click button to get ip.';
+  String _currentWifiState = 'click here to get current wifi state';
+  String _changeWifiState = "click here to change wifi state";
   List<WifiResult> ssidList = [];
   String ssid = '', password = '';
 
@@ -68,7 +70,10 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Offstage(
                 offstage: level == 0,
-                child: Image.asset(level == 0 ? 'images/wifi1.png' : 'images/wifi$level.png', width: 28, height: 21),
+                child: Image.asset(
+                    level == 0 ? 'images/wifi1.png' : 'images/wifi$level.png',
+                    width: 28,
+                    height: 21),
               ),
               Text(_wifiName),
             ],
@@ -80,6 +85,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: _getIP,
               ),
               Text(_ip),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              RaisedButton(
+                child: Text('currentWifiState'),
+                onPressed: _getWifiStatus,
+              ),
+              Text(_currentWifiState),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              RaisedButton(
+                child: Text('changeWifiState'),
+                onPressed: _changeWifiStatus,
+              ),
+              Text(_changeWifiState),
             ],
           ),
           TextField(
@@ -117,7 +140,8 @@ class _MyHomePageState extends State<MyHomePage> {
     } else {
       return Column(children: <Widget>[
         ListTile(
-          leading: Image.asset('images/wifi${ssidList[index - 1].level}.png', width: 28, height: 21),
+          leading: Image.asset('images/wifi${ssidList[index - 1].level}.png',
+              width: 28, height: 21),
           title: Text(
             ssidList[index - 1].ssid,
             style: TextStyle(
@@ -133,7 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void loadData() async {
-    FlutterWifi.list('').then((list) {
+    FlutterWifi.list(filter: '').then((list) {
       setState(() {
         ssidList = list;
       });
@@ -159,6 +183,20 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<Null> connection() async {
     FlutterWifi.connection(ssid, password).then((v) {
       print(v);
+    });
+  }
+
+  Future<Null> _getWifiStatus() async {
+    bool result = await FlutterWifi.isWifiEnabled();
+    setState(() {
+      _currentWifiState = result ? "Enabled" : "Disabled";
+    });
+  }
+
+  Future<Null> _changeWifiStatus() async {
+    bool result = await FlutterWifi.turnWifiOnOff(enable: true);
+    setState(() {
+      _changeWifiState = result ? "Done" : "Not Done";
     });
   }
 }

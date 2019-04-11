@@ -445,15 +445,16 @@ public class WifiUtil implements PluginRegistry.RequestPermissionsResultListener
 
             ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(context.CONNECTIVITY_SERVICE);
             NetworkInfo info = connectivityManager.getActiveNetworkInfo();
-            int netType = info.getType();
-
-            if (netType == ConnectivityManager.TYPE_WIFI) {
-                if (info.getState() == NetworkInfo.State.DISCONNECTED && willLink) {
-                    wifiManager.enableNetwork(netId, true);
-                    wifiManager.reconnect();
-                    result.success(1);
-                    willLink = false;
-                    clearMethodCallAndResult();
+            if (info != null) {
+                int netType = info.getType();
+                if (netType == ConnectivityManager.TYPE_WIFI) {
+                    if (info.getState() == NetworkInfo.State.DISCONNECTED && willLink) {
+                        wifiManager.enableNetwork(netId, true);
+                        wifiManager.reconnect();
+                        result.success(1);
+                        willLink = false;
+                        clearMethodCallAndResult();
+                    }
                 }
             }
         }

@@ -44,11 +44,17 @@ public class SwiftFlutterWifiPlugin: NSObject, FlutterPlugin {
     func getSSID() -> String
     {
         var ssid = "Not Found"
-        if let interfaces = CNCopySupportedInterfaces() as NSArray? {
-            for interface in interfaces {
-                if let interfaceInfo = CNCopyCurrentNetworkInfo(interface as! CFString) as NSDictionary? {
-                    ssid = interfaceInfo[kCNNetworkInfoKeySSID as String] as? String ?? "Not Found"
-                    break
+        if let interface = CNCopySupportedInterfaces() {
+            for i in 0..<CFArrayGetCount(interface) {
+                let interfaceName: UnsafeRawPointer = CFArrayGetValueAtIndex(interface, i)
+                let rec = unsafeBitCast(interfaceName, to: AnyObject.self)
+                if let unsafeInterfaceData = CNCopyCurrentNetworkInfo("\(rec)" as CFString), let interfaceData = unsafeInterfaceData as? [String : AnyObject] {
+                    // connected wifi
+                    print("BSSID: \(interfaceData["BSSID"]), SSID: \(interfaceData["SSID"]), SSIDDATA: \(interfaceData["SSIDDATA"])")
+                    ssid = interfaceData["SSID"] as? String ?? "CANT GET IT"
+                } else {
+                    // not connected wifi
+                    ssid = "Not Found"
                 }
             }
         }

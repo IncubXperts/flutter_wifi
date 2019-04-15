@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_wifi/flutter_wifi.dart';
+import 'dart:io' show Platform;
 
 void main() => runApp(new MyApp());
 
@@ -157,11 +158,18 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void loadData() async {
-    FlutterWifi.list(filter: '').then((list) {
+    if (Platform.isIOS) {
+      // TODO: iOS list SSID is not done
       setState(() {
-        ssidList = list;
+        ssidList = [];
       });
-    });
+    } else {
+      FlutterWifi.list(filter: '').then((list) {
+        setState(() {
+          ssidList = list;
+        });
+      });
+    }
   }
 
   Future<Null> _getWifiName() async {
